@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cyberpunk Space Shooter Design System */
+
+@layer base {
+  :root {
+    /* Core Cyberpunk Colors */
+    --background: 0 0% 0%;
+    --foreground: 180 100% 80%;
+
+    /* Cyberpunk Neon Colors */
+    --neon-pink: 300 100% 50%;
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 270 100% 66%;
+    --neon-blue: 240 100% 70%;
+    --neon-green: 120 100% 50%;
+
+    /* UI Colors */
+    --card: 0 0% 5%;
+    --card-foreground: 180 100% 80%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 180 100% 80%;
+
+    --primary: 300 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 270 100% 66%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 180 50% 60%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 270 100% 30%;
+    --input: 0 0% 10%;
+    --ring: 300 100% 50%;
+
+    /* Game specific colors */
+    --game-bg: 0 0% 0%;
+    --hud-glow: 300 100% 70%;
+    --energy-bar: 120 100% 50%;
+    --warning: 0 100% 50%;
+
+    /* Effects */
+    --glow-primary: 0 0 20px hsl(var(--primary));
+    --glow-cyan: 0 0 20px hsl(var(--neon-cyan));
+    --glow-pink: 0 0 20px hsl(var(--neon-pink));
+
+    --radius: 0.25rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Dark mode uses same cyberpunk theme */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-game-bg text-foreground font-mono overflow-hidden;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* Cyberpunk UI Elements */
+  .cyber-border {
+    @apply border border-primary;
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  .neon-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 255, 0.03) 2px,
+      rgba(0, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+  }
+
+  .glitch {
+    animation: glitch 2s infinite;
+  }
+
+  .orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .game-container {
+    @apply fixed inset-0 bg-game-bg overflow-hidden;
+  }
+
+  .hud-element {
+    @apply bg-card/80 backdrop-blur-sm cyber-border p-2 rounded;
+  }
+
+  .cyber-button {
+    @apply bg-primary/20 border border-primary text-primary px-4 py-2 rounded;
+    @apply hover:bg-primary hover:text-primary-foreground transition-all duration-200;
+    @apply transform hover:scale-105;
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
+  }
+
+  .cyber-button:hover {
+    box-shadow: 0 0 25px hsl(var(--primary) / 0.6);
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
